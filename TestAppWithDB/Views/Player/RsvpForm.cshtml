@@ -1,0 +1,50 @@
+﻿@model TestApp.Domain.Model.Player
+@{
+    ViewData["Title"] = "Регистрация";
+}
+<div class="panel-heading text-center " <h4>Форма регистрации</h4></div>
+<div class="mb-3">
+    <form asp-action="RsvpForm" method="post">
+        <div asp-validation-summary="All"></div>
+        <div class="form-group">
+            <label for="exampleInputEmail1" asp-for="FirstName">Имя: </label>
+            <input class="form-control" asp-for="FirstName" />
+        </div>
+        <div class="form-group"
+                <label for="exampleInputEmail1" asp-for="LastName">Фамилия: </label>
+                <input class="form-control" asp-for="LastName" />
+            </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Пол: </label>
+            <select class="form-control" asp-for="Gender">
+                <option value="">Choose an option</option>
+                <option value="М">Мужчина</option>
+                <option value="Ж">Женщина</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1" asp-for="BirthDate">Дата рождения: </label>
+            <input class="form-control" asp-for="BirthDate" type="date" min="1900-01-01" max="2022-01-01" />
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1" asp-for="TeamName">Название команды: </label>
+            <input class="form-control" asp-for="TeamName" />
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Страна</label>
+            <select class="form-control" asp-for="Country">
+                <option value="">Choose an option</option>
+                <option value="Россия">Россия</option>
+                <option value="США">США</option>
+                <option value="Италия">Италия</option>
+            </select>
+        </div>
+        <br />
+        <div class="text-center">
+            <button class="btn btn-primary" type="submit">
+                Зарегистрировать игрока
+            </button>
+        </div>
+    </form>
+</div>
+

@@ -3,7 +3,7 @@ namespace TestAppWithDB.DAL.Interfaces
 {
     public interface IBaseRepository<T>
     {
-        bool Create(T model);
+        Task<bool> Create(T model);
 
         T Get(string firstName);
 

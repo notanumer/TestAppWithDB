@@ -4,13 +4,31 @@
     ViewBag.Title = "title";
 }
 
-@foreach (var player in Model)
-{
-    <p>@player.FirstName</p>
-    <p>@player.LastName</p>
-    <p>@player.BirthDate</p>
-    <p>@player.Country</p>
-    <p>@player.Gender</p>
-    <p>@player.TeamName</p>
-}
+<h1>Список футболистов</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Имя</th>
+            <th>Фамилия</th>
+            <th>Дата рождения</th>
+            <th>Страна</th>
+            <th>Пол</th>
+            <th>Команда</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var player in Model)
+        {
+            <tr>
+                <td>@player.FirstName</td>
+                <td>@player.LastName</td>
+                <td>@player.BirthDate</td>
+                <td>@player.Country</td>
+                <td>@player.Gender</td>
+                <td>@player.TeamName</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
 

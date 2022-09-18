@@ -13,9 +13,11 @@ namespace TestAppWithDB.DAL.Repositories
             _db = db;
         }
 
-        public bool Create(Player model)
+        public async Task<bool> Create(Player model)
         {
-            throw new NotImplementedException();
+            await _db.Player.AddAsync(model);
+            await _db.SaveChangesAsync();
+            return true;
         }
 
         public bool Delete(Player model)
