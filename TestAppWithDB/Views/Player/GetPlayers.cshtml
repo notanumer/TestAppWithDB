@@ -1,0 +1,16 @@
+﻿@model List<TestApp.Domain.Model.Player>
+
+@{
+    ViewBag.Title = "title";
+}
+
+@foreach (var player in Model)
+{
+    <p>@player.FirstName</p>
+    <p>@player.LastName</p>
+    <p>@player.BirthDate</p>
+    <p>@player.Country</p>
+    <p>@player.Gender</p>
+    <p>@player.TeamName</p>
+}
+

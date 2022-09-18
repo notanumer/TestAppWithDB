@@ -9,17 +9,14 @@ namespace TestAppWithDB.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly IPlayerRepository _player;
 
-        public HomeController(ILogger<HomeController> logger, IPlayerRepository player)
+        public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
-            _player = player;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            var response = await _player.Select();
             return View();
         }
 
