@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using TestApp.Domain.Model;
 using TestAppWithDB.Models;
 
 namespace TestAppWithDB.Controllers
@@ -15,7 +16,8 @@ namespace TestAppWithDB.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var player = new Player() { FirstName = "Nikita", LastName = "Kolchin" };
+            return View(player);
         }
 
         public IActionResult Privacy()

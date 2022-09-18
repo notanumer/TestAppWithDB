@@ -9,6 +9,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{7C3BC2
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApp.Domain", "TestApp.Domain\TestApp.Domain.csproj", "{AA0E7EFA-75A8-4D25-B539-31D8C709C474}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DAL", "DAL", "{7C28D837-7D9A-4A69-8C0A-115646E10A2B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestAppWithDB.DAL", "TestAppWithDB.DAL\TestAppWithDB.DAL.csproj", "{BDFAD37F-E57A-4AE8-BE20-41692C21E172}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,12 +27,17 @@ Global
 		{AA0E7EFA-75A8-4D25-B539-31D8C709C474}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA0E7EFA-75A8-4D25-B539-31D8C709C474}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA0E7EFA-75A8-4D25-B539-31D8C709C474}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDFAD37F-E57A-4AE8-BE20-41692C21E172}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDFAD37F-E57A-4AE8-BE20-41692C21E172}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDFAD37F-E57A-4AE8-BE20-41692C21E172}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDFAD37F-E57A-4AE8-BE20-41692C21E172}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{AA0E7EFA-75A8-4D25-B539-31D8C709C474} = {7C3BC233-B69A-462B-B0A6-3595ADE15925}
+		{BDFAD37F-E57A-4AE8-BE20-41692C21E172} = {7C28D837-7D9A-4A69-8C0A-115646E10A2B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5D8CF4C7-77D3-4BD7-8DE9-EDC743A6D4EC}
