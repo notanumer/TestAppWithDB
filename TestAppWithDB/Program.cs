@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using TestAppWithDB.DAL;
+using TestAppWithDB.DAL.Interfaces;
+using TestAppWithDB.DAL.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 var connection = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connection));
+builder.Services.AddScoped<IPlayerRepository, PlayerRepository>();
 
 var app = builder.Build();
 

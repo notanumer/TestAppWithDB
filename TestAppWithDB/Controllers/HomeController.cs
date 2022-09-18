@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using TestApp.Domain.Model;
+using TestAppWithDB.DAL.Interfaces;
 using TestAppWithDB.Models;
 
 namespace TestAppWithDB.Controllers
@@ -8,16 +9,18 @@ namespace TestAppWithDB.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IPlayerRepository _player;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IPlayerRepository player)
         {
             _logger = logger;
+            _player = player;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var player = new Player() { FirstName = "Nikita", LastName = "Kolchin" };
-            return View(player);
+            var response = await _player.Select();
+            return View();
         }
 
         public IActionResult Privacy()
