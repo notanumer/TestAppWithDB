@@ -13,17 +13,17 @@ namespace TestAppWithDB.DAL.Repositories
             _db = db;
         }
 
-        public async Task<bool> Create(Player model)
+        public async Task<bool> CreateAsync(Player model)
         {
             await _db.Player.AddAsync(model);
             await _db.SaveChangesAsync();
             return true;
         }
 
-        public bool Delete(Player model)
+        public async Task<bool> DeleteAsync(Player model)
         {
             _db.Player.Remove(model);
-            _db.SaveChanges();
+            await _db.SaveChangesAsync();
             return true;
         }
 
@@ -37,7 +37,7 @@ namespace TestAppWithDB.DAL.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<List<Player>> Select()
+        public Task<List<Player>> SelectAsync()
         {
             return _db.Player.ToListAsync();
         }

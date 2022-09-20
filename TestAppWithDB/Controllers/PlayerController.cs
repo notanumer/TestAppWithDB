@@ -9,10 +9,17 @@ namespace TestAppWithDB.Controllers
     public class PlayerController : Controller
     {
         private readonly IPlayerRepository _player;
+        private HashSet<string> _teams = new();
 
         public PlayerController(IPlayerRepository player)
         {
             _player = player;
+        }
+
+        async Task GetTeams()
+        {
+            var response = await _player.SelectAsync();
+            _teams = response.Select(player => player.TeamName).ToHashSet();
         }
 
         public IActionResult Index()
@@ -23,19 +30,15 @@ namespace TestAppWithDB.Controllers
         [HttpGet]
         public async Task<IActionResult> GetPlayersAsync()
         {
-            var response = await _player.Select();
+            var response = await _player.SelectAsync();
             return View(response);
         }
 
         [HttpGet]
         public async Task<IActionResult> RsvpForm()
         {
-            var respons = await _player.Select();
-            var res = new HashSet<string>();
-            var plre = new Player();
-            foreach (var plr in respons)
-                res.Add(plr.TeamName);
-            var tp = new TeamsAndPlayers() { Player = plre, Teams = res };
+            await GetTeams();
+            var tp = new TeamsAndPlayers() { Player = new Player(), Teams = _teams };
             return View(tp);
         }
 
@@ -44,7 +47,7 @@ namespace TestAppWithDB.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _player.Create(player);
+                await _player.CreateAsync(player);
                 return View("Thanks");
             }
             else
@@ -55,16 +58,8 @@ namespace TestAppWithDB.Controllers
         [HttpGet]
         public async Task<IActionResult> EditPlayer(int id)
         {
-            var respons = await _player.Select();
-            Player player = null;
-            var res = new HashSet<string>();
-            foreach (var plr in respons)
-            {
-                if (plr.Id == id)
-                    player = plr;
-                res.Add(plr.TeamName);
-            }
-            var tp = new TeamsAndPlayers() { Player = player, Teams = res };
+            var player = await _player.GetAsync(id);
+            var tp = new TeamsAndPlayers() { Player = player, Teams = _teams };
             return View(tp);
         }
 
