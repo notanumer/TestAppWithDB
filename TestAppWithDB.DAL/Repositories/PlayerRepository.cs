@@ -22,12 +22,14 @@ namespace TestAppWithDB.DAL.Repositories
 
         public bool Delete(Player model)
         {
-            throw new NotImplementedException();
+            _db.Player.Remove(model);
+            _db.SaveChanges();
+            return true;
         }
 
-        public Player Get(string firstName)
+        public async Task<Player> GetAsync(string firstName)
         {
-            throw new NotImplementedException();
+            return await _db.Player.FirstOrDefaultAsync(player => player.FirstName == firstName);
         }
 
         public Player GetByTeamName(string teamName)

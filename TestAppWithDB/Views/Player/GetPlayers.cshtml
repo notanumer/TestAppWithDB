@@ -5,15 +5,15 @@
 }
 
 <h1>Список футболистов</h1>
-<table>
+<table class="table">
     <thead>
         <tr>
-            <th>Имя</th>
-            <th>Фамилия</th>
-            <th>Дата рождения</th>
-            <th>Страна</th>
-            <th>Пол</th>
-            <th>Команда</th>
+            <th scope="col">Имя</th>
+            <th scope="col">Фамилия</th>
+            <th scope="col">Дата рождения</th>
+            <th scope="col">Страна</th>
+            <th scope="col">Пол</th>
+            <th scope="col">Команда</th>
         </tr>
     </thead>
     <tbody>
@@ -22,7 +22,7 @@
             <tr>
                 <td>@player.FirstName</td>
                 <td>@player.LastName</td>
-                <td>@player.BirthDate</td>
+                <td>@player.BirthDate.ToShortDateString()</td>
                 <td>@player.Country</td>
                 <td>@player.Gender</td>
                 <td>@player.TeamName</td>

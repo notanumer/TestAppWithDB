@@ -5,7 +5,7 @@ namespace TestAppWithDB.DAL.Interfaces
     {
         Task<bool> Create(T model);
 
-        T Get(string firstName);
+        Task<T> GetAsync(string firstName);
 
         Task<List<T>> Select();
 
