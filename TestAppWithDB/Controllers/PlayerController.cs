@@ -2,7 +2,6 @@
 using TestApp.Domain.Model;
 using TestAppWithDB.DAL.Interfaces;
 using TestAppWithDB.ViewModels;
-using System.Linq;
 
 namespace TestAppWithDB.Controllers
 {
@@ -19,7 +18,9 @@ namespace TestAppWithDB.Controllers
         async Task GetTeams()
         {
             var response = await _player.SelectAsync();
-            _teams = response.Select(player => player.TeamName).ToHashSet();
+            _teams = response
+                .Select(player => player.TeamName)
+                .ToHashSet();
         }
 
         public IActionResult Index()
@@ -31,7 +32,7 @@ namespace TestAppWithDB.Controllers
         public async Task<IActionResult> GetPlayersAsync()
         {
             var response = await _player.SelectAsync();
-            return View(response);
+            return View(response.OrderBy(player => player.TeamName).ToList());
         }
 
         [HttpGet]
