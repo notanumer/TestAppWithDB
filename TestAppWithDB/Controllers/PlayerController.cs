@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TestApp.Domain.Model;
 using TestAppWithDB.DAL.Interfaces;
+using TestAppWithDB.Service.Interfaces;
 using TestAppWithDB.ViewModels;
 
 namespace TestAppWithDB.Controllers
@@ -8,17 +9,19 @@ namespace TestAppWithDB.Controllers
     public class PlayerController : Controller
     {
         private readonly IPlayerRepository _player;
+        private readonly IPlayerService _playerService;
         private HashSet<string> _teams = new();
 
-        public PlayerController(IPlayerRepository player)
+        public PlayerController(IPlayerRepository player, IPlayerService playerService)
         {
             _player = player;
+            _playerService = playerService;
         }
 
         async Task GetTeams()
         {
-            var response = await _player.SelectAsync();
-            _teams = response
+            var response = await _playerService.GetPlayersAsync();
+            _teams = response.Data
                 .Select(player => player.TeamName)
                 .ToHashSet();
         }
@@ -29,10 +32,13 @@ namespace TestAppWithDB.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetPlayersAsync()
+        public async Task<IActionResult> GetPlayers()
         {
-            var response = await _player.SelectAsync();
-            return View(response.OrderBy(player => player.TeamName).ToList());
+            var response = await _playerService.GetPlayersAsync();
+            if (response.StatusCode == TestApp.Domain.Enum.StatusCode.OK)
+                return View(response.Data.OrderBy(player => player.TeamName));
+            else
+                return View("Error", response.ExceptionDescription);
         }
 
         [HttpGet]

@@ -15,6 +15,7 @@
   <ItemGroup>
     <ProjectReference Include="..\TestApp.Domain\TestApp.Domain.csproj" />
     <ProjectReference Include="..\TestAppWithDB.DAL\TestAppWithDB.DAL.csproj" />
+    <ProjectReference Include="..\TestAppWithDB.Service\TestAppWithDB.Service.csproj" />
   </ItemGroup>
 
 </Project>
