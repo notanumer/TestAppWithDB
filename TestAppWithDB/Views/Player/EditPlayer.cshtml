@@ -1,0 +1,67 @@
+﻿@model TestAppWithDB.ViewModels.TeamsAndPlayers
+
+@{
+    ViewData["Title"] = "Редактирование игрока";
+}
+
+<div class="panel-heading text-center "> <h4>Редактировать</h4></div>
+<div class="mb-3">
+    <form asp-controller="Player" asp-action="EditPlayer" asp-route-id="@Model.Player.Id">
+        <div asp-validation-summary="All"></div>
+
+        <div class="form-group">
+            <label for="exampleInputEmail1" asp-for="@Model.Player.FirstName">Имя: </label>
+            <input class="form-control" asp-for="@Model.Player.FirstName" />
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInputEmail1" asp-for="@Model.Player.LastName">Фамилия: </label>
+            <input class="form-control" asp-for="@Model.Player.LastName" />
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInputEmail1">Пол: </label>
+            <select class="form-control" asp-for="@Model.Player.Gender">
+                <option value="">Choose an option</option>
+                <option value="М">Мужчина</option>
+                <option value="Ж">Женщина</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInputEmail1" asp-for="@Model.Player.BirthDate">Дата рождения: </label>
+            <input class="form-control" asp-for="@Model.Player.BirthDate" type="date" min="1900-01-01" max="2022-01-01" />
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInputEmail1" asp-for="@Model.Player.TeamName">Название команды: </label>
+
+            <input class="form-control" asp-for="@Model.Player.TeamName" list="teams" />
+            <datalist id="teams">
+                @foreach (var team in Model.Teams)
+                {
+                    <option value="@team"></option>
+                }
+            </datalist>
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInputEmail1">Страна</label>
+            <select class="form-control" asp-for="@Model.Player.Country">
+                <option value="">Choose an option</option>
+                <option value="Россия">Россия</option>
+                <option value="США">США</option>
+                <option value="Италия">Италия</option>
+            </select>
+        </div>
+
+        <br />
+
+        <div class="text-center">
+            <button class="btn btn-primary" type="submit">
+                Изменить
+            </button>
+        </div>
+        <input asp-for="@Model.Player.Id" type="hidden" />
+    </form>
+</div>

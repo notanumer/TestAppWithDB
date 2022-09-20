@@ -27,9 +27,9 @@ namespace TestAppWithDB.DAL.Repositories
             return true;
         }
 
-        public async Task<Player> GetAsync(string firstName)
+        public async Task<Player> GetAsync(int id)
         {
-            return await _db.Player.FirstOrDefaultAsync(player => player.FirstName == firstName);
+            return await _db.Player.FirstOrDefaultAsync(player => player.Id == id);
         }
 
         public Player GetByTeamName(string teamName)
@@ -40,6 +40,13 @@ namespace TestAppWithDB.DAL.Repositories
         public Task<List<Player>> Select()
         {
             return _db.Player.ToListAsync();
+        }
+
+        public async Task<bool> UpdateAsync(Player model)
+        {
+            _db.Player.Update(model);
+            await _db.SaveChangesAsync();
+            return true;
         }
     }
 }

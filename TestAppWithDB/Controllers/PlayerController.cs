@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Numerics;
 using TestApp.Domain.Model;
 using TestAppWithDB.DAL.Interfaces;
 using TestAppWithDB.ViewModels;
+using System.Linq;
 
 namespace TestAppWithDB.Controllers
 {
@@ -49,6 +49,30 @@ namespace TestAppWithDB.Controllers
             }
             else
                 return View();
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> EditPlayer(int id)
+        {
+            var respons = await _player.Select();
+            Player player = null;
+            var res = new HashSet<string>();
+            foreach (var plr in respons)
+            {
+                if (plr.Id == id)
+                    player = plr;
+                res.Add(plr.TeamName);
+            }
+            var tp = new TeamsAndPlayers() { Player = player, Teams = res };
+            return View(tp);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditPlayer(Player player)
+        {
+            await _player.UpdateAsync(player);
+            return RedirectToAction("GetPlayers");
         }
     }
 }

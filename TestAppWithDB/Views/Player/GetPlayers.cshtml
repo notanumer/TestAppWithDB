@@ -1,7 +1,7 @@
 ﻿@model List<TestApp.Domain.Model.Player>
 
 @{
-    ViewBag.Title = "title";
+    ViewData["Title"] = "Список";
 }
 
 <h1>Список футболистов</h1>
@@ -20,12 +20,14 @@
         @foreach (var player in Model)
         {
             <tr>
+                <td>@player.Id</td>
                 <td>@player.FirstName</td>
                 <td>@player.LastName</td>
                 <td>@player.BirthDate.ToShortDateString()</td>
                 <td>@player.Country</td>
                 <td>@player.Gender</td>
                 <td>@player.TeamName</td>
+                <td><a asp-controller="Player" asp-action="EditPlayer" asp-route-id="@player.Id">Редактировать</a></td>
             </tr>
         }
     </tbody>
