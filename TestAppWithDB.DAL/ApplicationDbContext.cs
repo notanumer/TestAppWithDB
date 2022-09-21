@@ -9,7 +9,7 @@ namespace TestAppWithDB.DAL
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> dbContextOptions)
             : base(dbContextOptions)
         {
-            
+            Database.EnsureCreated();
         }
 
         public DbSet<Player> Player { get; set; }

@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TestApp.Domain.Model;
-using TestAppWithDB.DAL.Interfaces;
 using TestAppWithDB.Service.Interfaces;
 using TestAppWithDB.ViewModels;
 
