@@ -8,13 +8,11 @@ namespace TestAppWithDB.Controllers
 {
     public class PlayerController : Controller
     {
-        private readonly IPlayerRepository _player;
         private readonly IPlayerService _playerService;
         private HashSet<string> _teams = new();
 
-        public PlayerController(IPlayerRepository player, IPlayerService playerService)
+        public PlayerController(IPlayerService playerService)
         {
-            _player = player;
             _playerService = playerService;
         }
 
@@ -54,7 +52,7 @@ namespace TestAppWithDB.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _player.CreateAsync(player);
+                await _playerService.CreateAsync(player);
                 return View("Thanks");
             }
             else

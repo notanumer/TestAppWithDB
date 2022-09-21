@@ -15,6 +15,24 @@ namespace TestAppWithDB.Service.Implementations
             _player = player;
         }
 
+        public async Task<IBaseResponse<bool>> CreateAsync(Player player)
+        {
+            var baseResponse = new BaseResponse<bool>();
+            try
+            {
+                var newPlayer = await _player.CreateAsync(player);
+                baseResponse.Data = newPlayer;
+                return baseResponse;
+            }
+            catch (Exception ex)
+            {
+                return new BaseResponse<bool>()
+                {
+                    ExceptionDescription = ex.Message
+                };
+            }
+        }
+
         public async Task<IBaseResponse<Player>> GetPlayerAsync(int id)
         {
             var baseResponse = new BaseResponse<Player>();
