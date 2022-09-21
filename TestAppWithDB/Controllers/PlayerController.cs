@@ -65,15 +65,15 @@ namespace TestAppWithDB.Controllers
         [HttpGet]
         public async Task<IActionResult> EditPlayer(int id)
         {
-            var player = await _player.GetAsync(id);
-            var tp = new TeamsAndPlayers() { Player = player, Teams = _teams };
+            var player = await _playerService.GetPlayerAsync(id);
+            var tp = new TeamsAndPlayers() { Player = player.Data, Teams = _teams };
             return View(tp);
         }
 
         [HttpPost]
         public async Task<IActionResult> EditPlayer(Player player)
         {
-            await _player.UpdateAsync(player);
+            await _playerService.UpdateAsync(player);
             return RedirectToAction("GetPlayers");
         }
     }
